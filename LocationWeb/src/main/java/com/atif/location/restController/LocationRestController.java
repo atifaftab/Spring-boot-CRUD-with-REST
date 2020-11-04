@@ -13,41 +13,41 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.atif.location.entities.Location;
-import com.atif.location.repos.LocationRepository;
+import com.atif.location.service.LocationServiceImpl;
 
 @RestController
 @RequestMapping("/locations")
 public class LocationRestController {
 
 	@Autowired
-	LocationRepository repo;
+	LocationServiceImpl service;
 
 	@GetMapping("/getLocations")
-	//@GetMapping
+	// @GetMapping
 	public List<Location> getLocations() {
-		return repo.findAll();
+		return service.findAll();
 	}
 
 	@PostMapping("/createLocation")
 	public Location createLocation(@RequestBody Location location) {
-		return repo.save(location);
+		return service.save(location);
 	}
 
 	@PutMapping("/updateLocation")
 	// @PutMapping
 	public Location updateLocation(@RequestBody Location location) {
-		return repo.save(location);
+		return service.updateLocation(location);
 	}
 
 	@DeleteMapping("/delete/{id}")
 	// @DeleteMapping("/{id}")
 	public void deleteLocation(@PathVariable("id") int id) {
-		repo.deleteById(id);
+		service.deleteById(id);
 	}
 
-	//@GetMapping("/{id}")
+	// @GetMapping("/{id}")
 	@GetMapping("/getLocationById/{id}")
 	public Location getLocation(@PathVariable("id") int id) {
-		return repo.findById(id).get();
+		return service.findById(id);
 	}
 }

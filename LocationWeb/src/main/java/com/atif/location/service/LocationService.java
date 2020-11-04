@@ -6,9 +6,10 @@ import com.atif.location.entities.Location;
 
 public interface LocationService {
 
-	Location saveLocation(Location location);
+	Location save(Location location);
 	Location updateLocation(Location location);
-	void deleteLocation(Location location);
-	Location getLocationById(int id);
-	List<Location> getAllLocations();
+	Location findById(int id);
+	List<Location> findAll();
+	public String greet();
+	void deleteById(int id);
 }

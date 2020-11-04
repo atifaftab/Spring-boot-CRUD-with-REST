@@ -8,7 +8,12 @@ import org.springframework.stereotype.Service;
 import com.atif.location.entities.Location;
 import com.atif.location.repos.LocationRepository;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 @Service
+@NoArgsConstructor
+@AllArgsConstructor
 public class LocationServiceImpl implements LocationService {
 
 	@Autowired
@@ -23,7 +28,7 @@ public class LocationServiceImpl implements LocationService {
 	}
 
 	@Override
-	public Location saveLocation(Location location) {
+	public Location save(Location location) {
 		return repository.save(location);
 	}
 
@@ -33,18 +38,24 @@ public class LocationServiceImpl implements LocationService {
 	}
 
 	@Override
-	public void deleteLocation(Location location) {
-		repository.delete(location);
+	public void deleteById(int id) {
+		repository.deleteById(id);
 	}
 
 	@Override
-	public Location getLocationById(int id) {
+	public Location findById(int id) {
 		return repository.findById(id).get();
+
 	}
 
 	@Override
-	public List<Location> getAllLocations() {
+	public List<Location> findAll() {
 		return repository.findAll();
+	}
+
+	@Override
+	public String greet() {
+		return "Hello, World";
 	}
 
 }
