@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.atif.location.entities.Location;
-import com.atif.location.service.LocationServiceImpl;
+import com.atif.location.service.LocationService;
 
 @RestController
 @RequestMapping("/locations")
 public class LocationRestController {
 
 	@Autowired
-	LocationServiceImpl service;
+	LocationService service;
 
 	@GetMapping("/getLocations")
 	// @GetMapping
