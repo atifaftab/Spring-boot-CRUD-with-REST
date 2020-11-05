@@ -1,5 +1,6 @@
 package com.atif.location.service;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
@@ -31,30 +32,34 @@ class LocationServiceImplTest {
 
 //		service = new LocationServiceImpl(repository);
 
-		/*
-		 * location = new Location(); location.setId(1); location.setCode("code");
-		 * location.setName("name"); location.setType("type");
-		 */
-
-	}
-
-	@Test
-	final void testFindById() {
-
 		location = new Location();
 		location.setId(1);
 		location.setCode("code");
 		location.setName("name");
 		location.setType("type");
 
+	}
+
+	@Test
+	final void testFindById() {
+
 		when(repository.findById(1)).thenReturn(Optional.of(location));
 		// assertEquals(1, service.findById(1).getId());
 
 		Location location = service.findById(1);
-		
+
 		assertNotNull(location);
 		assertEquals("code", location.getCode());
 
+	}
+
+	@Test
+	final void testSave() {
+		when(repository.save(any(Location.class))).thenReturn(location);
+
+		Location location1 = service.save(location);
+		assertNotNull(location1);
+		assertEquals(location.getName(), location1.getName());
 	}
 
 }
